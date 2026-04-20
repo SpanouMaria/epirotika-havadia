@@ -12,6 +12,6 @@ closeBtn.addEventListener('click', () => {
 
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     }
 });
