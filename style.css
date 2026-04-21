@@ -91,3 +91,24 @@
 .drop-btn:hover {
     transform: scale(1.2); 
 }
+
+.container {
+    display: flex;
+    gap: 30px; 
+    justify-content: center;
+}
+
+.btn {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn.blue { background: rgba(0, 150, 255, 0.3); }
+.btn.red { background: rgba(255, 50, 50, 0.3); }
+
+.btn:hover { transform: scale(1.1); }
