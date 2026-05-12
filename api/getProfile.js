@@ -1,17 +1,48 @@
+import admin from "firebase-admin";
+
+if (!admin.apps.length) {
+    admin.initializeApp({
+        credential: admin.credential.cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+        })
+    });
+}
+
+const db = admin.firestore();
+
 export default async function handler(req, res) {
 
-    const profiles = [
-        "profile1",
-        "profile2",
-        "profile3",
-        "profile4"
-    ];
+    const profilesRef = db.collection("profiles");
 
-    // προσωρινό random assignment
-    const randomProfile =
-        profiles[Math.floor(Math.random() * profiles.length)];
+    const snapshot = await profilesRef.get();
+
+    let selectedProfile = null;
+    let lowestCount = Infinity;
+
+    snapshot.forEach(doc => {
+        const data = doc.data();
+
+        if (data.count < lowestCount) {
+            lowestCount = data.count;
+            selectedProfile = doc.id;
+        }
+    });
+
+    if (!selectedProfile) {
+        return res.status(500).json({
+            error: "No profile found"
+        });
+    }
+
+    const profileRef = profilesRef.doc(selectedProfile);
+
+    await profileRef.update({
+        count: lowestCount + 1
+    });
 
     res.status(200).json({
-        profile: randomProfile
+        profile: selectedProfile
     });
 }

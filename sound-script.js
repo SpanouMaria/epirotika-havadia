@@ -17,7 +17,6 @@ async function setupAudio() {
     
     source = audioContext.createBufferSource();
     source.buffer = audioBuffer;
-    source.loop = true; 
     source.connect(audioContext.destination);
     source.start(0);
 }
