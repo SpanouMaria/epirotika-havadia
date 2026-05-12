@@ -1,32 +1,36 @@
-const blueAudio = new Audio('blue-sound.mp3');
-const redAudio = new Audio('red-sound.mp3');
+const faBtn =
+    document.getElementById('faBtn');
 
-function setupButton(btn, audio) {
-    btn.addEventListener('mousedown', () => {
-        audio.currentTime = 0; 
-        audio.loop = true;     
-        audio.play();
-    });
+const gBtn =
+    document.getElementById('gBtn');
 
-    btn.addEventListener('mouseup', () => {
-        audio.pause();
-    });
+function playSound(button, soundPath) {
 
-    btn.addEventListener('mouseleave', () => {
-        audio.pause();
-    });
+    const audio =
+        new Audio(soundPath);
 
-    btn.addEventListener('touchstart', (e) => {
-        e.preventDefault(); 
-        audio.currentTime = 0;
-        audio.loop = true;
-        audio.play();
-    });
+    button.classList.add('active');
 
-    btn.addEventListener('touchend', () => {
-        audio.pause();
-    });
+    audio.play();
+
+    audio.onended = () => {
+
+        button.classList.remove('active');
+    };
 }
 
-setupButton(document.getElementById('blueBtn'), blueAudio);
-setupButton(document.getElementById('redBtn'), redAudio);
+faBtn.addEventListener('click', () => {
+
+    playSound(
+        faBtn,
+        '../assets/audio/fa.mp3'
+    );
+});
+
+gBtn.addEventListener('click', () => {
+
+    playSound(
+        gBtn,
+        '../assets/audio/g.mp3'
+    );
+});

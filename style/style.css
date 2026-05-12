@@ -170,17 +170,259 @@ header {
     transform: scale(1.05);
 }
 
+.drop-body {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: 20px;
+}
+
 .drop-btn {
-    font-size: 72px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.3s;
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
     color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.35);
 }
 
 .drop-btn:hover {
-    transform: scale(1.1);
+
+    transform: scale(1.05);
+
+    background: rgba(255,255,255,0.12);
+}
+
+.drop-btn:active {
+
+    transform: scale(0.98);
+}
+
+.nature-body {
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    padding: 20px;
+}
+
+.nature-btn {
+
+    width: 160px;
+    height: 160px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    background: rgba(255,255,255,0.08);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.35);
+}
+
+.nature-btn:hover {
+
+    transform: scale(1.05);
+
+    background: rgba(255,255,255,0.12);
+}
+
+.nature-btn:active {
+
+    transform: scale(0.98);
+}
+
+.notes-container {
+
+    display: flex;
+
+    gap: 25px;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.note-btn {
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    color: white;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.35);
+}
+
+.note-btn:hover {
+
+    transform: scale(1.05);
+}
+
+.fa-btn {
+
+    background: rgba(255, 230, 0, 0.78);
+}
+
+.fa-btn:hover {
+
+    background: rgba(255, 230, 0, 0.78);
+}
+
+.g-btn {
+
+    background: rgba(132, 204, 22, 0.72);
+}
+
+.g-btn:hover {
+
+    background: rgba(132, 204, 22, 0.72);
+}
+
+.lyrics-box {
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(16px);
+
+    border-radius: 28px;
+
+    padding: 16px;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.35);
+}
+
+.lyrics-box h3 {
+
+    text-align: center;
+
+    margin-bottom: 14px;
+
+    font-size: 28px;
+
+    color: white;
+}
+
+.lyrics-box p {
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,0.88);
+
+    margin-bottom: 6px;
+
+    text-align: center;
+}
+
+.notes-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    width: min(92%, 900px);
+}
+
+.lyric-line {
+
+    font-size: clamp(11px, 2vw, 16px);
+
+    line-height: 1.8;
+
+    text-align: center;
+
+    margin-bottom: 8px;
+}
+
+.yellow {
+
+    background:
+        rgba(255, 230, 0, 0.78);
+
+    color: black;
+
+    padding: 4px 8px;
+
+    border-radius: 8px;
+}
+
+.green {
+
+    background:
+        rgba(132, 204, 22, 0.72);
+
+    color: black;
+
+    padding: 4px 8px;
+
+    border-radius: 8px;
 }
 
 .active {

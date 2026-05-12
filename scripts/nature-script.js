@@ -1,7 +1,7 @@
 let audioContext = null;
 
 let assignedSound =
-    localStorage.getItem('assignedDrop');
+    localStorage.getItem('assignedNature');
 
 async function getAssignedSound() {
 
@@ -14,10 +14,10 @@ async function getAssignedSound() {
             await response.json();
 
         assignedSound =
-            `../assets/audio/${data.drop}`;
+            `../assets/audio/${data.nature}`;
 
         localStorage.setItem(
-            'assignedDrop',
+            'assignedNature',
             assignedSound
         );
     }
@@ -59,10 +59,10 @@ async function setupAudio() {
     source.start(0);
 }
 
-const dropBtn =
+const natureBtn =
     document.getElementById('soundButton');
 
-dropBtn.addEventListener('click', () => {
+naruteBtn.addEventListener('click', () => {
 
     setupAudio();
 });

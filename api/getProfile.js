@@ -38,11 +38,14 @@ export default async function handler(req, res) {
 
     const profileRef = profilesRef.doc(selectedProfile);
 
+    const selectedProfileData = (await profileRef.get()).data();
     await profileRef.update({
         count: lowestCount + 1
     });
 
     res.status(200).json({
-        profile: selectedProfile
+        profile: selectedProfile,
+        drop: selectedProfileData.drop,
+        nature: selectedProfileData.nature
     });
 }
