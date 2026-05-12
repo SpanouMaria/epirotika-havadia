@@ -183,6 +183,11 @@ header {
     transform: scale(1.1);
 }
 
+.active {
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+    transform: scale(1.05);
+}
+
 /* TABLET */
 @media (min-width: 768px) {
 

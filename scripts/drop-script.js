@@ -21,17 +21,6 @@ async function setupAudio() {
     source.start(0);
 }
 
-const dropBtn = document.getElementById('soundButton');
-let isPlaying = false;
-
 dropBtn.addEventListener('click', () => {
-    if (!isPlaying) {
-        setupAudio(); 
-        dropBtn.textContent = "🔊";
-        isPlaying = true;
-    } else {
-        if (source) source.stop();
-        dropBtn.textContent = "💧";
-        isPlaying = false;
-    }
+    setupAudio();
 });
