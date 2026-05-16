@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SpanouMaria/epirotika-havadia#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "firebase-admin": "^13.9.0"
   }
 }

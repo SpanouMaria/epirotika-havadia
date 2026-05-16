@@ -10,11 +10,18 @@ async function getAssignedSound() {
         const response =
             await fetch('/api/getProfile');
 
+        console.log(response);
+
         const data =
             await response.json();
 
+        console.log(data);
+        console.log(data.nature);
+
         assignedSound =
             `../assets/audio/${data.nature}`;
+
+        console.log(assignedSound);
 
         localStorage.setItem(
             'assignedNature',
@@ -39,6 +46,8 @@ async function setupAudio() {
     const response =
         await fetch(assignedSound);
 
+    console.log(response);
+
     const arrayBuffer =
         await response.arrayBuffer();
 
@@ -62,7 +71,7 @@ async function setupAudio() {
 const natureBtn =
     document.getElementById('soundButton');
 
-naruteBtn.addEventListener('click', () => {
+natureBtn.addEventListener('click', () => {
 
     setupAudio();
 });

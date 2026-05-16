@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="el">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
-    <title>Ήχος Φύσης</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../style/style.css"
+    >
+
+    <title>
+        Ήχος B
+    </title>
+
 </head>
-<body class="nature-body">
+
+<body
+    class="nature-body"
+    style="opacity: 0;"
+>
 
     <main class="nature-container">
-        
-        <button id="soundButton" class="nature-btn">
+
+        <button
+            id="soundButton"
+            class="nature-btn"
+        >
             Nature
         </button>
 
@@ -18,5 +39,16 @@
 
     <script src="../scripts/nature-script.js"></script>
 
+    <script>
+
+        window.addEventListener('load', () => {
+
+            document.body.style.opacity = '1';
+
+        });
+
+    </script>
+
 </body>
+
 </html>
