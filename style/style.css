@@ -361,8 +361,8 @@ header {
         0 8px 32px rgba(0,0,0,0.35);
 
     width: 90%;
-    max-height: 85vh; /* Να μην βγαίνει εκτός οθόνης */
-    overflow-y: auto; /* Αν οι στίχοι είναι πολλοί, επιτρέπει εσωτερικό scroll */
+    max-height: 80vh; 
+    overflow-y: auto; 
     background: rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     padding: 25px;
@@ -480,31 +480,35 @@ header {
     color: white;
 }
 
-/* 1. Ενεργοποίηση του Snap σε όλο το έγγραφο */
 html {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
 
-/* 2. Ρύθμιση του body */
+
 .story-body {
-    height: 100vh;
+
+    scroll-snap-type: y mandatory;
+
     overflow-y: scroll;
-    /* Κρύβουμε το scrollbar για αίσθηση εφαρμογής */
-    scrollbar-width: none; 
+
+    height: 100vh;
 }
 .story-body::-webkit-scrollbar { display: none; }
 
-/* 3. Κάθε σελίδα στίχων γίνεται ένα "Reel" */
 .story-page {
-    height: 100vh; /* Ακριβώς το ύψος της οθόνης */
-    width: 100%;
+
+    min-height: 100vh;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
-    scroll-snap-align: start; /* Εδώ "κουμπώνει" η οθόνη */
-    scroll-snap-stop: always; /* Δεν επιτρέπει να προσπεράσεις σελίδες */
-    padding: 20px;
+
+    scroll-snap-align: start;
+
+    padding: 40px 0;
 }
 
 
@@ -574,7 +578,6 @@ html {
     display: none;
 }
 
-/* TABLET */
 @media (min-width: 768px) {
 
     .gallery {
@@ -597,7 +600,6 @@ html {
     }
 }
 
-/* DESKTOP */
 @media (min-width: 1200px) {
 
     .gallery {

@@ -1,31 +1,47 @@
 let audioContext = null;
 
-let assignedSound =
-    localStorage.getItem('assignedDrop');
+let assignedDrop =
+    localStorage.getItem(
+        'assignedDrop'
+    );
 
-async function getAssignedSound() {
+let assignedNature =
+    localStorage.getItem(
+        'assignedNature'
+    );
 
-    if (!assignedSound) {
+async function getProfileSounds() {
 
-        const response =
-            await fetch('/api/getProfile');
+    const response =
+        await fetch('/api/getProfile');
 
-        const data =
-            await response.json();
+    const data =
+        await response.json();
 
-        assignedSound =
+    if (!assignedDrop) {
+
+        assignedDrop =
             `../assets/audio/${data.drop}`;
 
         localStorage.setItem(
             'assignedDrop',
-            assignedSound
+            assignedDrop
+        );
+    }
+
+    if (!assignedNature) {
+
+        assignedNature =
+            `../assets/audio/${data.nature}`;
+
+        localStorage.setItem(
+            'assignedNature',
+            assignedNature
         );
     }
 }
 
-async function setupAudio() {
-
-    await getAssignedSound();
+async function playSound(soundPath) {
 
     if (!audioContext) {
 
@@ -37,7 +53,7 @@ async function setupAudio() {
     }
 
     const response =
-        await fetch(assignedSound);
+        await fetch(soundPath);
 
     const arrayBuffer =
         await response.arrayBuffer();
@@ -60,75 +76,111 @@ async function setupAudio() {
 }
 
 const dropBtn =
-    document.getElementById('soundButton');
+    document.getElementById(
+        'soundButton'
+    );
 
-dropBtn.addEventListener('click', () => {
+dropBtn?.addEventListener(
+    'click',
+    async () => {
 
-    setupAudio();
-});
+        await getProfileSounds();
+
+        playSound(assignedDrop);
+    }
+);
+
+const natureBtn =
+    document.getElementById(
+        'natureButton'
+    );
+
+natureBtn?.addEventListener(
+    'click',
+    async () => {
+
+        await getProfileSounds();
+
+        playSound(assignedNature);
+    }
+);
 
 const pages =
-    document.querySelectorAll('.story-page');
+    document.querySelectorAll(
+        '.story-page'
+    );
 
 const dots =
-    document.querySelectorAll('.dot');
+    document.querySelectorAll(
+        '.dot'
+    );
 
-window.addEventListener('scroll', () => {
+window.addEventListener(
+    'scroll',
+    () => {
 
-    let current = 0;
+        let current = 0;
 
-    pages.forEach((page, index) => {
+        pages.forEach(
+            (page, index) => {
 
-        const top =
-            page.offsetTop;
+                const top =
+                    page.offsetTop;
 
-        const height =
-            page.clientHeight;
+                const height =
+                    page.clientHeight;
 
-        if (
-            scrollY >= top - height / 2
-        ) {
-            current = index;
-        }
-    });
-
-    dots.forEach(dot => {
-
-        dot.classList.remove('active');
-    });
-
-    dots[current].classList.add('active');
-    
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll('.story-page');
-    const dots = document.querySelectorAll('.dot');
-
-    const observerOptions = {
-        threshold: 0.7 // Ενεργοποιείται όταν φαίνεται το 70% της σελίδας
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 1. Βρίσκουμε το index της σελίδας
-                const index = Array.from(sections).indexOf(entry.target);
-
-                // 2. Ενημερώνουμε τις τελείες
-                dots.forEach(dot => dot.classList.remove('active'));
-                if (dots[index]) dots[index].classList.add('active');
-
-                // 3. ΑΥΤΟΜΑΤΟ REDIRECT ΣΤΗΝ ΤΕΛΕΥΤΑΙΑ ΣΕΛΙΔΑ
-                // Αν η σελίδα έχει την κλάση transition-page (π.χ. η Μαριόλα)
-                if (entry.target.classList.contains('transition-page')) {
-                    setTimeout(() => {
-                        window.location.href = "nature.html";
-                    }, 4000); // Περιμένει 4 δευτερόλεπτα για να διαβάσει ο χρήστης
+                if (
+                    scrollY >=
+                    top - height / 2
+                ) {
+                    current = index;
                 }
             }
-        });
-    }, observerOptions);
+        );
 
-    sections.forEach(section => observer.observe(section));
-});
+        dots.forEach(dot => {
+
+            dot.classList.remove(
+                'active'
+            );
+        });
+
+        if (dots[current]) {
+
+            dots[current].classList.add(
+                'active'
+            );
+        }
+    }
+);
+
+const faBtn =
+    document.getElementById(
+        'faBtn'
+    );
+
+const gBtn =
+    document.getElementById(
+        'gBtn'
+    );
+
+faBtn?.addEventListener(
+    'click',
+    () => {
+
+        playSound(
+            '../assets/audio/fa.mp3'
+        );
+    }
+);
+
+gBtn?.addEventListener(
+    'click',
+    () => {
+
+        playSound(
+            '../assets/audio/g.mp3'
+        );
+    }
+);
