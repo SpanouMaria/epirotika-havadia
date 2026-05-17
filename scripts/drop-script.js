@@ -26,6 +26,13 @@ async function initAudio() {
 
 async function getProfileSounds() {
 
+    if (
+        assignedDrop &&
+        assignedNature
+    ) {
+        return;
+    }
+
     const response =
         await fetch('/api/getProfile');
 
@@ -55,7 +62,7 @@ async function getProfileSounds() {
     }
 }
 
-async function preloadSound(
+async function loadSound(
     key,
     path
 ) {
@@ -70,10 +77,13 @@ async function preloadSound(
     const arrayBuffer =
         await response.arrayBuffer();
 
-    soundBuffers[key] =
+    const audioBuffer =
         await audioContext.decodeAudioData(
             arrayBuffer
         );
+
+    soundBuffers[key] =
+        audioBuffer;
 }
 
 function playSound(key) {
@@ -98,33 +108,6 @@ function playSound(key) {
     source.start(0);
 }
 
-async function setupAllSounds() {
-
-    await initAudio();
-
-    await getProfileSounds();
-
-    await preloadSound(
-        'drop',
-        assignedDrop
-    );
-
-    await preloadSound(
-        'nature',
-        assignedNature
-    );
-
-    await preloadSound(
-        'fa',
-        '../assets/audio/fa.mp3'
-    );
-
-    await preloadSound(
-        'g',
-        '../assets/audio/g.mp3'
-    );
-}
-
 const dropBtn =
     document.getElementById(
         'soundButton'
@@ -134,7 +117,14 @@ dropBtn?.addEventListener(
     'click',
     async () => {
 
-        await setupAllSounds();
+        await initAudio();
+
+        await getProfileSounds();
+
+        await loadSound(
+            'drop',
+            assignedDrop
+        );
 
         playSound('drop');
     }
@@ -149,7 +139,14 @@ natureBtn?.addEventListener(
     'click',
     async () => {
 
-        await setupAllSounds();
+        await initAudio();
+
+        await getProfileSounds();
+
+        await loadSound(
+            'nature',
+            assignedNature
+        );
 
         playSound('nature');
     }
@@ -165,11 +162,27 @@ const gBtn =
         'gBtn'
     );
 
-faBtn?.addEventListener(
-    'click',
+window.addEventListener(
+    'load',
     async () => {
 
-        await setupAllSounds();
+        await initAudio();
+
+        await loadSound(
+            'fa',
+            '../assets/audio/fa.mp3'
+        );
+
+        await loadSound(
+            'g',
+            '../assets/audio/g.mp3'
+        );
+    }
+);
+
+faBtn?.addEventListener(
+    'click',
+    () => {
 
         playSound('fa');
     }
@@ -177,9 +190,7 @@ faBtn?.addEventListener(
 
 gBtn?.addEventListener(
     'click',
-    async () => {
-
-        await setupAllSounds();
+    () => {
 
         playSound('g');
     }
