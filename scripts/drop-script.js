@@ -1,5 +1,7 @@
 let audioContext = null;
 
+const soundBuffers = {};
+
 let assignedDrop =
     localStorage.getItem(
         'assignedDrop'
@@ -9,6 +11,18 @@ let assignedNature =
     localStorage.getItem(
         'assignedNature'
     );
+
+async function initAudio() {
+
+    if (!audioContext) {
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+    }
+}
 
 async function getProfileSounds() {
 
@@ -41,38 +55,74 @@ async function getProfileSounds() {
     }
 }
 
-async function playSound(soundPath) {
+async function preloadSound(
+    key,
+    path
+) {
 
-    if (!audioContext) {
-
-        audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+    if (soundBuffers[key]) {
+        return;
     }
 
     const response =
-        await fetch(soundPath);
+        await fetch(path);
 
     const arrayBuffer =
         await response.arrayBuffer();
 
-    const audioBuffer =
+    soundBuffers[key] =
         await audioContext.decodeAudioData(
             arrayBuffer
         );
+}
+
+function playSound(key) {
+
+    const buffer =
+        soundBuffers[key];
+
+    if (!buffer) {
+        return;
+    }
 
     const source =
         audioContext.createBufferSource();
 
-    source.buffer = audioBuffer;
+    source.buffer =
+        buffer;
 
     source.connect(
         audioContext.destination
     );
 
     source.start(0);
+}
+
+async function setupAllSounds() {
+
+    await initAudio();
+
+    await getProfileSounds();
+
+    await preloadSound(
+        'drop',
+        assignedDrop
+    );
+
+    await preloadSound(
+        'nature',
+        assignedNature
+    );
+
+    await preloadSound(
+        'fa',
+        '../assets/audio/fa.mp3'
+    );
+
+    await preloadSound(
+        'g',
+        '../assets/audio/g.mp3'
+    );
 }
 
 const dropBtn =
@@ -84,9 +134,9 @@ dropBtn?.addEventListener(
     'click',
     async () => {
 
-        await getProfileSounds();
+        await setupAllSounds();
 
-        playSound(assignedDrop);
+        playSound('drop');
     }
 );
 
@@ -99,9 +149,39 @@ natureBtn?.addEventListener(
     'click',
     async () => {
 
-        await getProfileSounds();
+        await setupAllSounds();
 
-        playSound(assignedNature);
+        playSound('nature');
+    }
+);
+
+const faBtn =
+    document.getElementById(
+        'faBtn'
+    );
+
+const gBtn =
+    document.getElementById(
+        'gBtn'
+    );
+
+faBtn?.addEventListener(
+    'click',
+    async () => {
+
+        await setupAllSounds();
+
+        playSound('fa');
+    }
+);
+
+gBtn?.addEventListener(
+    'click',
+    async () => {
+
+        await setupAllSounds();
+
+        playSound('g');
     }
 );
 
@@ -134,6 +214,7 @@ window.addEventListener(
                     scrollY >=
                     top - height / 2
                 ) {
+
                     current = index;
                 }
             }
@@ -152,35 +233,5 @@ window.addEventListener(
                 'active'
             );
         }
-    }
-);
-
-const faBtn =
-    document.getElementById(
-        'faBtn'
-    );
-
-const gBtn =
-    document.getElementById(
-        'gBtn'
-    );
-
-faBtn?.addEventListener(
-    'click',
-    () => {
-
-        playSound(
-            '../assets/audio/fa.mp3'
-        );
-    }
-);
-
-gBtn?.addEventListener(
-    'click',
-    () => {
-
-        playSound(
-            '../assets/audio/g.mp3'
-        );
     }
 );
