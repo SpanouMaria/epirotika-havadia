@@ -14,16 +14,22 @@ if (!admin.apps.length) {
             admin.credential.cert({
 
                 projectId:
-                    process.env.FIREBASE_PROJECT_ID,
+                    process.env
+                        .FIREBASE_PROJECT_ID,
 
                 clientEmail:
-                    process.env.FIREBASE_CLIENT_EMAIL,
+                    process.env
+                        .FIREBASE_CLIENT_EMAIL,
 
                 privateKey:
-                    process.env.FIREBASE_PRIVATE_KEY
+                    process.env
+                        .FIREBASE_PRIVATE_KEY
                         ? process.env
                             .FIREBASE_PRIVATE_KEY
-                            .replace(/\\n/g, '\n')
+                            .replace(
+                                /\\n/g,
+                                '\n'
+                            )
                         : ''
             })
     });
@@ -40,7 +46,9 @@ export default async function handler(
     try {
 
         const profilesRef =
-            db.collection('profiles');
+            db.collection(
+                'profiles'
+            );
 
         const snapshot =
             await profilesRef.get();
@@ -57,19 +65,25 @@ export default async function handler(
         let lowestNatureCount =
             Infinity;
 
+        // -------------------------
+        // DROP BALANCING
+        // -------------------------
 
         snapshot.forEach(doc => {
 
             const data =
                 doc.data();
 
+            const dropCount =
+                data.dropCount || 0;
+
             if (
-                data.dropCount <
+                dropCount <
                 lowestDropCount
             ) {
 
                 lowestDropCount =
-                    data.dropCount;
+                    dropCount;
 
                 selectedDropProfile =
                     {
@@ -79,24 +93,34 @@ export default async function handler(
             }
         });
 
+        // -------------------------
+        // NATURE BALANCING
+        // -------------------------
 
         snapshot.forEach(doc => {
 
             const data =
                 doc.data();
 
+            const natureCount =
+                data.natureCount || 0;
+
+            const maxNatureUsers =
+                data.maxNatureUsers
+                || Infinity;
+
             if (
 
-                data.natureCount <
-                data.maxNatureUsers &&
+                natureCount <
+                maxNatureUsers &&
 
-                data.natureCount <
+                natureCount <
                 lowestNatureCount
 
             ) {
 
                 lowestNatureCount =
-                    data.natureCount;
+                    natureCount;
 
                 selectedNatureProfile =
                     {
@@ -106,21 +130,26 @@ export default async function handler(
             }
         });
 
-
-        if (!selectedNatureProfile) {
+        // fallback
+        if (
+            !selectedNatureProfile
+        ) {
 
             snapshot.forEach(doc => {
 
                 const data =
                     doc.data();
 
+                const natureCount =
+                    data.natureCount || 0;
+
                 if (
-                    data.natureCount <
+                    natureCount <
                     lowestNatureCount
                 ) {
 
                     lowestNatureCount =
-                        data.natureCount;
+                        natureCount;
 
                     selectedNatureProfile =
                         {
@@ -131,10 +160,16 @@ export default async function handler(
             });
         }
 
+        // -------------------------
+        // VALIDATION
+        // -------------------------
 
         if (
+
             !selectedDropProfile ||
+
             !selectedNatureProfile
+
         ) {
 
             return res
@@ -146,29 +181,68 @@ export default async function handler(
                 });
         }
 
+        // -------------------------
+        // FIRESTORE TRANSACTION
+        // -------------------------
 
-        await profilesRef
-            .doc(
-                selectedDropProfile.id
-            )
-            .update({
+        await db.runTransaction(
+            async transaction => {
 
-                dropCount:
-                    selectedDropProfile
-                        .dropCount + 1
-            });
+                const dropRef =
+                    profilesRef.doc(
+                        selectedDropProfile.id
+                    );
 
-        await profilesRef
-            .doc(
-                selectedNatureProfile.id
-            )
-            .update({
+                const natureRef =
+                    profilesRef.doc(
+                        selectedNatureProfile.id
+                    );
 
-                natureCount:
-                    selectedNatureProfile
-                        .natureCount + 1
-            });
+                const dropDoc =
+                    await transaction.get(
+                        dropRef
+                    );
 
+                const natureDoc =
+                    await transaction.get(
+                        natureRef
+                    );
+
+                const dropData =
+                    dropDoc.data();
+
+                const natureData =
+                    natureDoc.data();
+
+                transaction.update(
+                    dropRef,
+                    {
+
+                        dropCount:
+                            (
+                                dropData
+                                    .dropCount || 0
+                            ) + 1
+                    }
+                );
+
+                transaction.update(
+                    natureRef,
+                    {
+
+                        natureCount:
+                            (
+                                natureData
+                                    .natureCount || 0
+                            ) + 1
+                    }
+                );
+            }
+        );
+
+        // -------------------------
+        // RESPONSE
+        // -------------------------
 
         return res
             .status(200)
