@@ -246,3 +246,17 @@ window.addEventListener(
         }
     }
 );
+
+const isIOS =
+
+    /iPhone|iPad|iPod/i
+    .test(
+        navigator.userAgent
+    );
+
+if (isIOS) {
+
+    alert(
+        'Για πλήρη εμπειρία ήχου, απενεργοποιήστε το silent mode.'
+    );
+}
