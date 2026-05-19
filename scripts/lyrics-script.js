@@ -203,7 +203,7 @@ const pages =
 
 const dots =
     document.querySelectorAll(
-        '.dot'
+        '.progress-number'
     );
 
 window.addEventListener(

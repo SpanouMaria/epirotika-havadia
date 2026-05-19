@@ -762,6 +762,162 @@ html {
     position: relative;
 }
 
+.program-container {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 80px 16px 140px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.program-title {
+
+    text-align: center;
+
+    color: white;
+
+    margin-bottom: 20px;
+
+    font-size: 2rem;
+}
+
+.program-card {
+
+    width: 100%;
+
+    padding: 18px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    display: flex;
+
+    gap: 18px;
+
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+.song-number {
+
+    min-width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.12);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+}
+
+.song-info h2 {
+
+    margin: 0 0 8px;
+
+    color: white;
+
+    font-size: 1.2rem;
+}
+
+.song-info p {
+
+    margin: 4px 0;
+
+    color: rgba(255,255,255,0.8);
+
+    font-size: 0.95rem;
+}
+
+
+.story-progress {
+
+    position: fixed;
+
+    right: 12px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    z-index: 1000;
+}
+
+.progress-number {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: rgba(255,255,255,0.6);
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    backdrop-filter: blur(8px);
+
+    transition: 0.3s ease;
+}
+
+.progress-number.active {
+
+    background: rgba(255,255,255,0.2);
+
+    color: white;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,0.5);
+
+    transform: scale(1.12);
+}
 @media (min-width: 768px) {
 
     .gallery {
