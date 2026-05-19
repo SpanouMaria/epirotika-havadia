@@ -220,34 +220,32 @@ header {
 
     align-items: center;
 
-    gap: 16px;
+    gap: 18px;
 
-    padding: 60px 16px 120px;
+    padding: 40px 16px 120px;
 
     box-sizing: border-box;
 }
 
 .puzzle-item {
 
-    position: relative;
+    width: 92%;
 
-    overflow: hidden;
+    max-width: 340px;
 
-    border-radius: 24px;
+    height: 180px;
 
-    background:
-        rgba(255,255,255,0.08);
+    border-radius: 32px;
 
-    border:
-        1px solid rgba(255,255,255,0.12);
+    display: flex;
 
-    backdrop-filter: blur(12px);
+    justify-content: center;
 
-    min-height: 180px;
+    align-items: center;
 
-    cursor: pointer;
+    text-align: center;
 
-    transition: 0.3s;
+    box-sizing: border-box;
 }
 
 .puzzle-item:hover {
