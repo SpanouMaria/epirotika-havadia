@@ -863,7 +863,7 @@ html {
 
     position: fixed;
 
-    right: 12px;
+    right: 6px;
 
     top: 50%;
 
@@ -873,16 +873,16 @@ html {
 
     flex-direction: column;
 
-    gap: 10px;
+    gap: 6px;
 
     z-index: 1000;
 }
 
 .progress-number {
 
-    width: 32px;
+    width: 24px;
 
-    height: 32px;
+    height: 24px;
 
     border-radius: 50%;
 
@@ -892,32 +892,35 @@ html {
 
     align-items: center;
 
-    background: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.05);
 
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.08);
 
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.45);
 
-    font-size: 0.9rem;
+    font-size: 0.72rem;
 
-    font-weight: bold;
+    font-weight: 600;
 
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
 
-    transition: 0.3s ease;
+    transition: all 0.25s ease;
+
+    flex-shrink: 0;
 }
 
 .progress-number.active {
 
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.18);
 
     color: white;
 
     box-shadow:
-        0 0 12px rgba(255,255,255,0.5);
+        0 0 10px rgba(255,255,255,0.35);
 
-    transform: scale(1.12);
+    transform: scale(1.08);
 }
+
 @media (min-width: 768px) {
 
     .gallery {
