@@ -521,8 +521,6 @@ height: 92px;
 
 .notes-wrapper {
 
-    min-height: 100vh;
-
     display: flex;
 
     flex-direction: column;
@@ -536,6 +534,8 @@ height: 92px;
     padding: 40px 0 80px;
 
     box-sizing: border-box;
+
+    width: 100%;
 }
 
 .plain-lyric-line {
@@ -697,6 +697,16 @@ html {
     scroll-snap-align: start;
 
     position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 0 80px;
+
+    box-sizing: border-box;
 }
 
 .transition-page {
