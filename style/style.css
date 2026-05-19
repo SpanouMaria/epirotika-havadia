@@ -538,6 +538,19 @@ height: 92px;
     width: 100%;
 }
 
+body {
+
+    margin: 0;
+
+    scroll-snap-type: y mandatory;
+
+    overflow-y: scroll;
+
+    height: 100vh;
+
+    scroll-behavior: smooth;
+}
+
 .plain-lyric-line {
 
     font-size: 20px;
@@ -695,6 +708,8 @@ html {
     min-height: 100vh;
 
     scroll-snap-align: start;
+
+    scroll-snap-stop: always;
 
     position: relative;
 
