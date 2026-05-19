@@ -19,7 +19,7 @@
 
 .welcome-screen {
 
-    min-height: 100vh;
+    height: 100vh;
 
     display: flex;
 
@@ -31,9 +31,9 @@
 
     text-align: center;
 
-    padding-bottom: 80px;
-
     box-sizing: border-box;
+
+    padding: 40px 20px 100px;
 }
 
 .welcome-title {
@@ -669,15 +669,11 @@ html {
 
     min-height: 100vh;
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
     scroll-snap-align: start;
 
-    padding: 40px 0;
+    position: relative;
+
+    overflow: hidden;
 }
 
 
