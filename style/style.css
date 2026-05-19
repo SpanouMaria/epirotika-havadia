@@ -603,6 +603,66 @@ html {
     height: 100vh;
 }
 
+
+.page-footer {
+
+    position: absolute;
+
+    bottom: 10px;
+
+    left: 0;
+
+    width: 100%;
+
+    padding: 0 18px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    opacity: 0.75;
+}
+
+.footer-side {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.footer-label {
+
+    margin: 0;
+
+    font-size: 0.75rem;
+
+    color: white;
+}
+
+.footer-bank-logo {
+
+    width: 80px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+.footer-main-logo {
+
+    width: 45px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
 .story-body::-webkit-scrollbar { display: none; }
 
 .story-page {
@@ -685,6 +745,11 @@ html {
 .dot:last-child::after {
 
     display: none;
+}
+
+.transition-page {
+
+    position: relative;
 }
 
 @media (min-width: 768px) {
