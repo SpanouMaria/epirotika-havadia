@@ -19,21 +19,20 @@
 
 .welcome-screen {
 
-    width: 100%;
-
     min-height: 100vh;
 
     display: flex;
 
     flex-direction: column;
 
+    justify-content: center;
+
     align-items: center;
 
-    justify-content: space-between;
+    text-align: center;
 
-    padding:
-        80px 24px 40px;
-    
+    padding-bottom: 80px;
+
     box-sizing: border-box;
 }
 
@@ -58,10 +57,11 @@
 
 .main-logo {
 
-    width:
-        min(80vw, 500px);
+    width: 240px;
 
-    object-fit: contain;
+    max-width: 70vw;
+
+    margin-top: 40px;
 }
 
 .bottom-info {
