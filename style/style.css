@@ -212,14 +212,19 @@ header {
 
     min-height: 100vh;
 
-    display: grid;
+    display: flex;
 
-    grid-template-columns:
-        1fr;
+    flex-direction: column;
 
-    gap: 12px;
+    justify-content: flex-start;
 
-    padding: 80px 16px 16px;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 60px 16px 120px;
+
+    box-sizing: border-box;
 }
 
 .puzzle-item {
