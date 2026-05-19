@@ -587,19 +587,22 @@ header {
 }
 
 html {
-    scroll-snap-type: y mandatory;
+
+    scroll-snap-type: y proximity;
+
     scroll-behavior: smooth;
 }
 
 
 .story-body {
 
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
 
     overflow-y: scroll;
 
     height: 100vh;
 }
+
 .story-body::-webkit-scrollbar { display: none; }
 
 .story-page {
