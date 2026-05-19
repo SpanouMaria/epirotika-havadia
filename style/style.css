@@ -312,8 +312,8 @@ header {
 
 .drop-btn {
 
-    width: 100px;
-    height: 100px;
+    width: 92px;
+height: 92px;
 
     border-radius: 50%;
 
@@ -348,6 +348,11 @@ header {
     transform: scale(0.98);
 }
 
+.drop-container {
+
+    margin-top: -12px;
+}
+
 .nature-body {
 
     display: flex;
@@ -362,8 +367,8 @@ header {
 
 .nature-btn {
 
-    width: 100px;
-    height: 100px;
+    width: 92px;
+    height: 92px;
 
     border-radius: 50%;
 
@@ -475,7 +480,7 @@ header {
 
     max-width: 900px;
 
-    margin: auto;
+    margin-top: 40px;
 
     margin-right: 42px;
 
@@ -483,7 +488,7 @@ header {
         0 8px 32px rgba(0,0,0,0.35);
 
     width: 90%;
-    max-height: 80vh; 
+    max-height: 72vh;
     overflow-y: auto; 
     background: rgba(255, 255, 255, 0.08);
     border-radius: 28px;
@@ -516,7 +521,7 @@ header {
 
 .notes-wrapper {
 
-    width: 100%;
+    min-height: 100vh;
 
     display: flex;
 
@@ -526,7 +531,11 @@ header {
 
     align-items: center;
 
-    gap: 40px;
+    gap: 36px;
+
+    padding: 40px 0 80px;
+
+    box-sizing: border-box;
 }
 
 .plain-lyric-line {
@@ -688,75 +697,6 @@ html {
     scroll-snap-align: start;
 
     position: relative;
-
-    overflow: hidden;
-}
-
-
-.story-progress {
-
-    position: fixed;
-
-    right: 18px;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 14px;
-
-    z-index: 999;
-}
-
-.dot {
-
-    width: 8px;
-    height: 8px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.35);
-
-    transition: all 0.35s ease;
-}
-
-.dot.active {
-
-    width: 14px;
-    height: 14px;
-
-    background: white;
-
-    box-shadow:
-        0 0 18px rgba(255,255,255,0.9);
-}
-
-.dot::after {
-
-    content: '';
-
-    position: absolute;
-
-    width: 2px;
-
-    height: 14px;
-
-    background:
-        rgba(255,255,255,0.18);
-
-    transform:
-        translate(3px, 10px);
-}
-
-.dot:last-child::after {
-
-    display: none;
 }
 
 .transition-page {
