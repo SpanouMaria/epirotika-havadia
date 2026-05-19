@@ -1,3 +1,114 @@
+.welcome-body {
+
+    margin: 0;
+
+    background:
+        #59538b;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    font-family:
+        serif;
+}
+
+.welcome-screen {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        80px 24px 40px;
+    
+    box-sizing: border-box;
+}
+
+.welcome-title {
+
+    font-size:
+        clamp(3rem, 7vw, 5rem);
+
+    color:
+        #21196b;
+
+    font-style:
+        italic;
+
+    font-weight:
+        400;
+
+    margin: 0;
+
+    text-align: center;
+}
+
+.main-logo {
+
+    width:
+        min(80vw, 500px);
+
+    object-fit: contain;
+}
+
+.bottom-info {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+}
+
+.bottom-label {
+
+    color:
+        #21196b;
+
+    font-size:
+        clamp(1.1rem, 2vw, 2rem);
+
+    font-style:
+        italic;
+
+    margin-bottom: 10px;
+}
+
+.bank-logo {
+
+    width:
+        180px;
+
+    object-fit: contain;
+}
+
+.small-logo {
+
+    width:
+        120px;
+
+    object-fit: contain;
+}
+
+.sponsor-box,
+.organizer-box {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +118,7 @@
 body {
     font-family: Arial, sans-serif;
     transition: opacity 0.5s ease;
-    background: linear-gradient(180deg, #220404 0%, #111827 100%);
+    background: linear-gradient(180deg, #59538b 0%, #59538a 100%);
     min-height: 100vh;
     overflow-x: hidden;
     color: white;
