@@ -608,7 +608,7 @@ html {
 
     position: absolute;
 
-    bottom: 10px;
+    bottom: 12px;
 
     left: 0;
 
@@ -622,7 +622,7 @@ html {
 
     justify-content: space-between;
 
-    align-items: flex-end;
+    align-items: center;
 
     opacity: 0.75;
 }
