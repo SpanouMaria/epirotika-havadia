@@ -211,8 +211,6 @@ header {
 
     width: 100%;
 
-    min-height: 100vh;
-
     display: flex;
 
     flex-direction: column;
@@ -715,11 +713,13 @@ html {
 
     display: flex;
 
-    justify-content: center;
+    justify-content: flex-start;
 
     align-items: center;
 
-    padding: 40px 0 80px;
+    padding-top: 40px;
+
+    padding-bottom: 80px;
 
     box-sizing: border-box;
 }
