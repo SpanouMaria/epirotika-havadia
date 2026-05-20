@@ -1,3 +1,8 @@
+const consent =
+    document.getElementById(
+        'newsletterConsent'
+    );
+
 const modal =
     document.getElementById(
         'newsletterModal'
@@ -57,6 +62,14 @@ closeBtn?.addEventListener(
 button?.addEventListener(
     'click',
     async () => {
+
+        if (!consent.checked) {
+
+            message.textContent =
+                'Απαιτείται αποδοχή';
+
+            return;
+        }
 
         const email =
             input.value

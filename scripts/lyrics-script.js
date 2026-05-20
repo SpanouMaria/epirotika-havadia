@@ -86,7 +86,10 @@ async function loadSound(
         audioBuffer;
 }
 
-function playSound(key) {
+function playSound(
+    key,
+    loop = false
+) {
 
     const buffer =
         soundBuffers[key];
@@ -101,11 +104,16 @@ function playSound(key) {
     source.buffer =
         buffer;
 
+    source.loop =
+        loop;
+
     source.connect(
         audioContext.destination
     );
 
     source.start(0);
+
+    return source;
 }
 
 const dropBtn =
@@ -126,7 +134,17 @@ dropBtn?.addEventListener(
             assignedDrop
         );
 
-        playSound('drop');
+    const source =
+        playSound(
+                'drop',
+                true
+            );
+
+        setTimeout(() => {
+
+            source.stop();
+
+        }, 120000);
     }
 );
 
@@ -148,7 +166,17 @@ natureBtn?.addEventListener(
             assignedNature
         );
 
-        playSound('nature');
+        const source =
+            playSound(
+                'nature',
+                true
+            );
+
+        setTimeout(() => {
+
+            source.stop();
+
+        }, 120000);
     }
 );
 

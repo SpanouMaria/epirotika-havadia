@@ -97,16 +97,60 @@ export default async function handler(
         // NATURE BALANCING
         // -------------------------
 
+        const normalNatureProfiles = [];
+
+        const rareNatureProfiles = [];
+
         snapshot.forEach(doc => {
 
             const data =
                 doc.data();
 
+            if (data.rare) {
+
+                rareNatureProfiles.push({
+
+                    id: doc.id,
+                    ...data
+                });
+
+            } else {
+
+                normalNatureProfiles.push({
+
+                    id: doc.id,
+                    ...data
+                });
+            }
+        });
+
+        const normalBalanced =
+
+            normalNatureProfiles.every(
+                profile =>
+
+                    (profile.natureCount || 0) >= 3
+            );
+
+        const pool =
+
+            normalBalanced
+
+                ? [
+
+                    ...normalNatureProfiles,
+                    ...rareNatureProfiles
+                ]
+
+                : normalNatureProfiles;
+
+        pool.forEach(profile => {
+
             const natureCount =
-                data.natureCount || 0;
+                profile.natureCount || 0;
 
             const maxNatureUsers =
-                data.maxNatureUsers
+                profile.maxNatureUsers
                 || Infinity;
 
             if (
@@ -123,13 +167,9 @@ export default async function handler(
                     natureCount;
 
                 selectedNatureProfile =
-                    {
-                        id: doc.id,
-                        ...data
-                    };
+                    profile;
             }
         });
-
         // fallback
         if (
             !selectedNatureProfile
