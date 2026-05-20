@@ -198,12 +198,12 @@ window.addEventListener(
 
         await loadSound(
             'fa',
-            '../assets/audio/fa.mp3'
+            '../assets/audio/fa.wav'
         );
 
         await loadSound(
             'g',
-            '../assets/audio/g.mp3'
+            '../assets/audio/g.wav'
         );
     }
 );
