@@ -64,6 +64,33 @@ export default async function handler(
                 .trim()
                 .toLowerCase();
 
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (
+            !emailRegex.test(
+                normalizedEmail
+            )
+        ) {
+
+            return res.status(400).json({
+
+                error:
+                    'Invalid email'
+            });
+        }
+
+        if (
+            normalizedEmail.length > 120
+        ) {
+
+            return res.status(400).json({
+
+                error:
+                    'Invalid email length'
+            });
+        }
+
         const existingQuery =
             await db
                 .collection(
@@ -94,6 +121,9 @@ export default async function handler(
                 email:
                     normalizedEmail,
 
+                consent:
+                    true,
+
                 createdAt:
                     admin.firestore
                         .FieldValue
@@ -112,7 +142,7 @@ export default async function handler(
         return res.status(500).json({
 
             error:
-                error.message
+                'Server error'
         });
     }
 }

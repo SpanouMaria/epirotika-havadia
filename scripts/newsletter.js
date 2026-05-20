@@ -59,10 +59,15 @@ button?.addEventListener(
     async () => {
 
         const email =
-            input.value.trim();
+            input.value
+                .trim()
+                .toLowerCase();
+
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (
-            !email.includes('@')
+            !emailRegex.test(email)
         ) {
 
             message.textContent =
@@ -70,6 +75,26 @@ button?.addEventListener(
 
             return;
         }
+
+        const lastSubmit =
+            localStorage.getItem(
+                'newsletterSubmit'
+            );
+
+        if (
+            lastSubmit &&
+            Date.now() -
+            Number(lastSubmit) <
+            10000
+        ) {
+
+            message.textContent =
+                'Περιμένετε λίγο';
+
+            return;
+        }
+
+        button.disabled = true;
 
         try {
 
@@ -97,26 +122,46 @@ button?.addEventListener(
             const data =
                 await response.json();
 
-            message.textContent =
-                'Ευχαριστούμε!';
+            if (
+                data.message ===
+                'Email already exists'
+            ) {
 
-            localStorage.setItem(
-                'newsletterClosed',
-                'true'
-            );
+                message.textContent =
+                    'Το email υπάρχει ήδη';
 
-            setTimeout(() => {
+            } else {
 
-                modal.classList.remove(
-                    'active'
+                message.textContent =
+                    'Ευχαριστούμε!';
+
+                localStorage.setItem(
+                    'newsletterClosed',
+                    'true'
                 );
 
-            }, 1200);
+                localStorage.setItem(
+                    'newsletterSubmit',
+                    Date.now()
+                );
+
+                setTimeout(() => {
+
+                    modal.classList.remove(
+                        'active'
+                    );
+
+                }, 1200);
+            }
 
         } catch (error) {
 
             message.textContent =
                 'Κάτι πήγε λάθος';
+
+        } finally {
+
+            button.disabled = false;
         }
     }
 );
