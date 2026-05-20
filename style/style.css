@@ -782,6 +782,10 @@ html {
     align-items: center;
 
     box-sizing: border-box;
+
+    text-decoration: none;
+
+    color: inherit;
 }
 
 .song-number {
