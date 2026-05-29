@@ -65,9 +65,9 @@ export default async function handler(
         let lowestNatureCount =
             Infinity;
 
-        // -------------------------
+        
         // DROP BALANCING
-        // -------------------------
+        
 
         snapshot.forEach(doc => {
 
@@ -93,9 +93,9 @@ export default async function handler(
             }
         });
 
-        // -------------------------
+        
         // NATURE BALANCING
-        // -------------------------
+        
 
         const normalNatureProfiles = [];
 
@@ -200,9 +200,9 @@ export default async function handler(
             });
         }
 
-        // -------------------------
+        
         // VALIDATION
-        // -------------------------
+        
 
         if (
 
@@ -221,9 +221,9 @@ export default async function handler(
                 });
         }
 
-        // -------------------------
+        
         // FIRESTORE TRANSACTION
-        // -------------------------
+        
 
         await db.runTransaction(
             async transaction => {
@@ -280,9 +280,9 @@ export default async function handler(
             }
         );
 
-        // -------------------------
+        
         // RESPONSE
-        // -------------------------
+        
 
         return res
             .status(200)

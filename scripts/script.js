@@ -24,27 +24,27 @@ loadProfile();
 const soundProfiles = {
 
     profile1: {
-        bird: "bird1.wav",
-        water: "water1.wav",
-        wind: "wind1.wav"
+        bird: "bird1.mp3",
+        water: "water1.mp3",
+        wind: "wind1.mp3"
     },
 
     profile2: {
-        bird: "bird2.wav",
-        water: "water2.wav",
-        wind: "wind2.wav"
+        bird: "bird2.mp3",
+        water: "water2.mp3",
+        wind: "wind2.mp3"
     },
 
     profile3: {
-        bird: "bird3.wav",
-        water: "water3.wav",
-        wind: "wind3.wav"
+        bird: "bird3.mp3",
+        water: "water3.mp3",
+        wind: "wind3.mp3"
     },
 
     profile4: {
-        bird: "bird4.wav",
-        water: "water4.wav",
-        wind: "wind4.wav"
+        bird: "bird4.mp3",
+        water: "water4.mp3",
+        wind: "wind4.mp3"
     }
 
 };
