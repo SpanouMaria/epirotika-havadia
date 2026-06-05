@@ -346,6 +346,41 @@ const isIOS =
 if (isIOS) {
 
     alert(
-        'Για πλήρη εμπειρία ήχου, απενεργοποιήστε το silent mode.'
+        'Για πλήρη εμπειρία ήχου, απενεργοποιήστε τη σίγαση.'
+    );
+}
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const song =
+    params.get('song');
+
+if (song) {
+
+    window.addEventListener(
+        'load',
+        () => {
+
+            setTimeout(() => {
+
+                const target =
+                    document.getElementById(
+                        `song-${song}`
+                    );
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: 'instant',
+                        block: 'start'
+                    });
+                }
+
+            }, 300);
+        }
     );
 }
