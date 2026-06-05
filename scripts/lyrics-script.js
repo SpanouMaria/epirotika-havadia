@@ -2,6 +2,12 @@ let audioContext = null;
 
 const soundBuffers = {};
 
+let currentDropSource =
+    null;
+
+let currentNatureSource =
+    null;
+
 let assignedDrop =
     localStorage.getItem(
         'assignedDrop'
@@ -74,6 +80,13 @@ async function loadSound(
     const response =
         await fetch(path);
 
+    if (!response.ok) {
+
+        throw new Error(
+            `Failed to load ${path}`
+        );
+    }
+
     const arrayBuffer =
         await response.arrayBuffer();
 
@@ -134,11 +147,22 @@ dropBtn?.addEventListener(
             assignedDrop
         );
 
-    const source =
+    if (currentDropSource) {
+
+        try {
+
+            currentDropSource.stop();
+
+        } catch {}
+    }
+    currentDropSource =
         playSound(
-                'drop',
-                true
-            );
+            'drop',
+            true
+        );
+
+    const source =
+        currentDropSource;
 
         setTimeout(() => {
 
@@ -166,11 +190,23 @@ natureBtn?.addEventListener(
             assignedNature
         );
 
-        const source =
+        if (currentNatureSource) {
+
+            try {
+
+                currentNatureSource.stop();
+
+            } catch {}
+        }
+        
+        currentNatureSource =
             playSound(
                 'nature',
                 true
             );
+
+        const source =
+            currentNatureSource;
 
         setTimeout(() => {
 
@@ -194,17 +230,42 @@ window.addEventListener(
     'load',
     async () => {
 
-        await initAudio();
+        try {
 
-        await loadSound(
-            'fa',
-            '../assets/audio/fa.mp3'
-        );
+            await initAudio();
 
-        await loadSound(
-            'g',
-            '../assets/audio/g.mp3'
-        );
+            await getProfileSounds();
+
+            await Promise.all([
+
+                loadSound(
+                    'drop',
+                    assignedDrop
+                ),
+
+                loadSound(
+                    'nature',
+                    assignedNature
+                ),
+
+                loadSound(
+                    'fa',
+                    '../assets/audio/fa.mp3'
+                ),
+
+                loadSound(
+                    'g',
+                    '../assets/audio/g.mp3'
+                )
+            ]);
+
+        } catch (error) {
+
+            console.error(
+                'Audio preload failed:',
+                error
+            );
+        }
     }
 );
 

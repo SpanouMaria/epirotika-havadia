@@ -3,6 +3,10 @@
 
 <head>
 
+    <link
+        rel="icon"
+        href="/favicon.png"
+    />
     <meta charset="UTF-8">
 
     <meta
@@ -219,6 +223,31 @@
     <script
         src="scripts/newsletter.js"
     ></script>
+
+    <script>
+
+    if (
+        'serviceWorker'
+        in navigator
+    ) {
+
+        window.addEventListener(
+            'load',
+            () => {
+
+                navigator
+                    .serviceWorker
+                    .register(
+                        '/sw.js'
+                    )
+                    .catch(
+                        console.error
+                    );
+            }
+        );
+    }
+
+    </script>
 </body>
 
 </html>

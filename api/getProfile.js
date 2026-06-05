@@ -42,6 +42,19 @@ export default async function handler(
     req,
     res
 ) {
+    if (req.method !== 'GET') {
+
+        return res.status(405).json({
+
+            error:
+                'Method not allowed'
+        });
+    }
+
+    res.setHeader(
+        'Cache-Control',
+        'no-store'
+    );
 
     try {
 
@@ -52,6 +65,15 @@ export default async function handler(
 
         const snapshot =
             await profilesRef.get();
+
+        if (snapshot.empty) {
+
+            return res.status(404).json({
+
+                error:
+                    'No profiles found'
+            });
+        }
 
         let selectedDropProfile =
             null;
