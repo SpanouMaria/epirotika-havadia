@@ -346,59 +346,7 @@ const isIOS =
 if (isIOS) {
 
     alert(
-        'Για πλήρη εμπειρία ήχου, απενεργοποιήστε τη σίγαση.'
+        'Για πλήρη εμπειρία ήχου, απενεργοποιήστε το silent mode.'
     );
 }
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-const song =
-    params.get('song');
-
-if (song) {
-
-    window.addEventListener(
-        'load',
-        () => {
-
-            setTimeout(() => {
-
-                const target =
-                    document.getElementById(
-                        `song-${song}`
-                    );
-
-                if (target) {
-
-                    const container =
-                        document.querySelector(
-                            '.story-body'
-                        );
-
-                    if (container) {
-
-                        container.scrollTo({
-
-                            top:
-                                target.offsetTop,
-
-                            behavior:
-                                'auto'
-                        });
-
-                    } else {
-
-                        target.scrollIntoView({
-                            behavior:
-                                'auto'
-                        });
-                    }
-                }
-
-            }, 500);
-        }
-    );
-}
