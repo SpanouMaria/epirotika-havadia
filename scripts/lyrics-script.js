@@ -373,14 +373,32 @@ if (song) {
 
                 if (target) {
 
-                    target.scrollIntoView({
+                    const container =
+                        document.querySelector(
+                            '.story-body'
+                        );
 
-                        behavior: 'instant',
-                        block: 'start'
-                    });
+                    if (container) {
+
+                        container.scrollTo({
+
+                            top:
+                                target.offsetTop,
+
+                            behavior:
+                                'auto'
+                        });
+
+                    } else {
+
+                        target.scrollIntoView({
+                            behavior:
+                                'auto'
+                        });
+                    }
                 }
 
-            }, 300);
+            }, 500);
         }
     );
 }
