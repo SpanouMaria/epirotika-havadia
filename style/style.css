@@ -1113,7 +1113,6 @@ html {
     bottom: 180px; 
     left: 50%; 
     transform: translateX(-50%); 
-    animation: bounce 1.8s infinite;
 }
 
 .scroll-arrow { 
