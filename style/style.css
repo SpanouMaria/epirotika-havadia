@@ -1108,6 +1108,29 @@ html {
     color: #fff;
 }
 
+.scroll-hint { 
+    position: absolute; 
+    bottom: 80px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 8px; 
+    color: rgba(255,255,255,0.8); 
+    font-size: 0.9rem; 
+    animation: bounce 1.8s infinite;
+}
+
+.scroll-arrow { 
+    font-size: 1.8rem; 
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+
 @media (min-width: 768px) {
 
     .gallery {
